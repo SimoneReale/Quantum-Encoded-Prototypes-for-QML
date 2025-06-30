@@ -2,13 +2,13 @@
 
 This repository presents a comprehensive study on evaluating and understanding quantum feature maps in Quantum Machine Learning (QML). We introduce an interpretable, prototype-based method leveraging Maximum Mean Discrepancy (MMD) to quantitatively assess the quality of data embeddings produced by different quantum circuits, providing a powerful tool for model selection and explainability.
 
-**Authors:** Marco Garlini, Alberto Tagliaferro, Simone Reale
+**Authors:** Marco Garlini, Simone Reale, Alberto Tagliaferro
 
 ---
 
 ## 1. The Problem: The QML "Black Box"
 
-Quantum Machine Learning holds immense promise, but many of its models, particularly Variational Quantum Classifiers (VQCs), operate as "black boxes." The performance of a VQC is critically dependent on the choice of a **quantum feature map**—the circuit responsible for encoding classical data into the high-dimensional quantum state space.
+Quantum Machine Learning is a very promising technology, but many of its models, particularly Variational Quantum Classifiers (VQCs), operate as "black boxes." The performance of a VQC is critically dependent on the choice of a **quantum feature map**—the circuit responsible for encoding classical data into the high-dimensional quantum state space.
 
 This choice is often heuristic, leaving practitioners with critical unanswered questions:
 - How can we determine if a feature map is creating a useful, class-separable data representation?
@@ -22,7 +22,7 @@ This project aims to answer these questions by developing a low-cost, quantitati
 Our framework is built on a simple yet powerful hypothesis:
 > A feature map is effective if it allows for the selection of a small set of **prototypes** that accurately represent the entire dataset's distribution in the quantum feature space.
 
-A **prototype** is a real data point from the training set that serves as the "best possible example" of its class. By identifying these key representatives, we can gauge the quality of the data's structure in the quantum Hilbert space.
+A **prototype** is a real data point from the training set that serves as the "best possible example" of its class. By identifying these key representatives, we can assess the quality of the data's structure in the quantum Hilbert space.
 
 ### Maximum Mean Discrepancy (MMD)
 
@@ -95,10 +95,6 @@ The pattern holds true across all individual datasets.
 ### Discussion: The "Sufficiently Good" Representation
 
 An interesting nuance appeared in the Breast Cancer results: `AngleEncoding` had the best MMD scores, but `ZFeatureMap` achieved a marginally higher accuracy. This suggests that while MMD is a powerful predictor, a "threshold of quality" may exist. Once a feature map creates a "sufficiently good" data representation (i.e., MMD is low enough), the model can achieve high accuracy, and other factors, like the specific interplay between the feature map and the variational ansatz, may determine the final marginal gains.
-
-### The Surprising Ineffectiveness of Entanglement
-
-A key insight from this study is the **consistent failure of the entangling `ZZFeatureMap`**. For these structured, tabular datasets, adding entanglement proved detrimental, consistently producing the highest MMD scores and lowest accuracies. This suggests that entanglement is not a panacea and can obscure, rather than enhance, the underlying data structure, possibly by inducing trainability issues like barren plateaus. Our MMD metric successfully identified this weakness without the need for a full, costly training run.
 
 ---
 
