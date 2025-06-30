@@ -131,3 +131,7 @@ The project requires Python 3.8+ and the following libraries:
 You can install them via pip:
 ```bash
 pip install pandas numpy matplotlib scikit-learn qiskit qiskit-machine-learning alive-progress scipy
+
+To replicate the results and generate all plots, simply run the main script:
+```bash
+python main_experiment.py
